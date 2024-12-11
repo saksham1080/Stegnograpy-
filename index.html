@@ -1,0 +1,403 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Steganography</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #4caf50;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+            margin-top: 40px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Image Steganography: Merge and Unmerge</h1>
+
+        <h2>Merge Images</h2>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="image1">Image 1 (larger): </label>
+            <input type="file" name="image1" required><br><br>
+            <label for="image2">Image 2 (smaller): </label>
+            <input type="file" name="image2" required><br><br>
+            <input type="submit" value="Merge Images">
+        </form>
+
+        <h2>Unmerge Image</h2>
+        <form action="/unmerge" method="post" enctype="multipart/form-data">
+            <label for="image">Merged Image: </label>
+            <input type="file" name="image" required><br><br>
+            <input type="submit" value="Unmerge Image">
+        </form>
+    </div>
+
+    <footer>
+        <p>Created with ❤️ by Saksham Gupta</p>
+    </footer>
+</body>
+</html> -->
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Steganography</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #4caf50;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+            margin-top: 40px;
+        }
+
+        .result-image {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Image Steganography: Merge and Unmerge</h1>
+
+        <h2>Merge Images</h2>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="image1">Image 1 (larger): </label>
+            <input type="file" name="image1" required><br><br>
+            <label for="image2">Image 2 (smaller): </label>
+            <input type="file" name="image2" required><br><br>
+            <input type="submit" value="Merge Images">
+        </form>
+
+        <h2>Unmerge Image</h2>
+        <form action="/unmerge" method="post" enctype="multipart/form-data">
+            <label for="image">Merged Image: </label>
+            <input type="file" name="image" required><br><br>
+            <input type="submit" value="Unmerge Image">
+        </form>
+
+        {% if merged_image_url %}
+            <h3>Merged Image</h3>
+            <img src="{{ merged_image_url }}" alt="Merged Image" class="result-image">
+        {% endif %}
+
+        {% if unmerged_image_url %}
+            <h3>Unmerged Image</h3>
+            <img src="{{ unmerged_image_url }}" alt="Unmerged Image" class="result-image">
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>Created with ❤️ by Saksham Gupta</p>
+    </footer>
+</body>
+
+
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Steganography</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #4caf50;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            margin: 0 auto;
+            max-width: 1000px;
+            flex-wrap: wrap;
+        }
+
+        .form-container > div {
+            width: 45%;
+            box-sizing: border-box;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .result-image {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px auto;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+            margin-top: 40px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Image Steganography: Merge and Unmerge</h1>
+
+    <div class="form-container">
+        <!-- Left Section: Merge and Unmerge Forms -->
+        <div>
+            <h2>Merge Images</h2>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <label for="image1">Image 1 (larger): </label>
+                <input type="file" name="image1" required><br><br>
+                <label for="image2">Image 2 (smaller): </label>
+                <input type="file" name="image2" required><br><br>
+                <input type="submit" value="Merge Images">
+            </form>
+
+            <h2>Unmerge Image</h2>
+            <form action="/unmerge" method="post" enctype="multipart/form-data">
+                <label for="image">Merged Image: </label>
+                <input type="file" name="image" required><br><br>
+                <input type="submit" value="Unmerge Image">
+            </form>
+        </div>
+
+        <!-- Right Section: Image Results -->
+        <div>
+            {% if merged_image_url %}
+                <h3>Merged Image</h3>
+                <img src="{{ merged_image_url }}" alt="Merged Image" class="result-image">
+            {% endif %}
+
+            {% if unmerged_image_url %}
+                <h3>Unmerged Image</h3>
+                <img src="{{ unmerged_image_url }}" alt="Unmerged Image" class="result-image">
+            {% endif %}
+        </div>
+    </div>
+
+    <footer>
+        <p>Created with ❤️ by Saksham Gupta</p>
+    </footer>
+</body>
+</html>
